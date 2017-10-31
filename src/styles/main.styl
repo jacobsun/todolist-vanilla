@@ -1,2 +1,164 @@
+cr_primary = #474843
+cr_decn = #D88A8A
+cr_sub = #9D9D93
+cr_click = #66B6AB
+cr_body = #474843
+todo-item =
+  display: block
+  padding: 15px 65px 15px 0px
+  margin-left: 70px
+  line-height: 2rem
+  cursor: text
+  width: 100%
+  color: cr_body
+
+button-style =
+  color: cr_click
+  border: 1px solid transparent
+  border-radius: 3px
+  padding: 5px
+  margin: 0 5px
+  &:hover, &:active
+    border: 1px solid #eee
+    cursor: pointer
+
+html
+  font-size: 10px
+
 body
-  max-width:800px
+  color: cr_body
+  max-width: 800px
+  margin: 0 auto
+a
+  text-decoration: none
+ul
+  list-style-type: none
+  padding:0
+  margin: 0
+header
+  h1
+    color: cr_primary
+    font-size: 7rem
+    text-align: center
+input, button
+    appearance: none
+    -webkit-appearance: none
+    outline: none
+    background: none
+    border: none
+    padding: none
+    vertical-align: baseline
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+#content
+  border: 1px solid #999
+  width: 70%
+  margin: 0 auto
+  font-size: 2rem
+  #mark-all
+    // width: 40px
+    // height: 54px
+    position: absolute
+    &:after
+      color:cr_decn
+      display:block
+      content:'\2615'
+      font-size: 2.5rem
+      // line-height: 51px
+      padding: 13px
+      cursor: pointer
+  #textbox
+    width: 100%
+    box-sizing: border-box
+    padding: 15px 15px 15px 70px
+    border: none
+    border-bottom: 1px solid #eee
+    font-size: 2rem
+  ul
+    li
+      position: relative
+      margin: 0
+      border-bottom: 1px solid #eee
+  footer
+    color: cr_click
+    font-size: 1.5rem
+    padding: 10px 0
+    text-align: center
+    overflow: hidden
+    position: relative
+    span
+      float: left
+      padding: 5px 35px 5px 15px
+    .filters
+      z-index: 0
+      position: absolute
+      right: 0
+      left: 0
+      padding: 5px
+      a
+        {button-style}
+
+    #clear-done
+        position: relative
+        z-index: 20
+        display: none
+        font-size: 1.5rem
+        float:right
+        {button-style}
+
+
+
+
+
+label
+  {todo-item}
+.toggle
+  margin: auto 0
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  width: 40px
+  text-align: center
+  &:after
+    color: cr_sub
+    cursor: pointer
+    display:block
+    padding: 17px 0 15px 0
+    transform: scale(.8)
+    content: '\2713'
+
+button.delete
+  top: 0
+  bottom: 0
+  right: 0
+  height: auto 0
+  width: 40px
+  position: absolute
+  &:after
+    color: cr_decn
+    cursor: pointer
+    text-align: center
+    content:'×'
+
+footer.info
+  color: cr_sub
+  margin-top: 30px
+  font-size: 1.2rem
+  text-align: center
+
+#content
+  ul
+    li
+      &.editing
+        label
+          display: none
+        input.edit
+          {todo-item}
+      &.done
+        label
+          color: #d9d9d9;
+          text-decoration: line-through;
+        .toggle:after
+          color: cr_decn
+

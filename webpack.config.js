@@ -25,12 +25,12 @@ let config = {
   },
   module:{
     rules:[
-      {
-        enforce: 'pre',
-        test: /\.(js)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.(js)$/,
+      //   loader: 'eslint-loader',
+      //   exclude: /node_modules/
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -84,7 +84,19 @@ let proConfig = {
     rules:[
       {
         test:/\.js$/,
-        use:'babel-loader',
+        use: 'babel-loader',
+        // use: {
+        //   loader: 'babel-loader',
+        //   options: {
+        //     babelrc: false,
+        //     comments: false,
+        //     presets: [
+        //       [
+        //       'env', {modules: false, targets: ['ie >=9 ']}
+        //       ]
+        //     ]
+        //   }
+        // },
         exclude:/node_modules/
       },
       {
