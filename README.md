@@ -1,7 +1,9 @@
 # Todolist
 
 # Demo
-[Demo Link] (https://jacobsun.github.io/todolist-vanilla/)
+[Demo Link][1]
+
+[1]:https://jacobsun.github.io/todolist-vanilla/
 
 # Install
 
