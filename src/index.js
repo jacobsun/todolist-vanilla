@@ -1,17 +1,20 @@
 import '../node_modules/normalize.css/normalize.css'
 import './styles/main.styl'
-import Store from './module/store'
-import { on } from './module/helpers'
-import View from './module/view'
-import Template from './module/template'
-import Controller from './module/controller'
+import {doms} from './module/cache'
+import {route, basedon, render, page} from './module/view'
+import {features, activate} from './module/features'
+import {on} from './module/helpers'
 
-const store = new Store(window.localStorage)
-const view = new View(new Template())
-const controller = new Controller(store, view)
-const setView = () => {
-  controller.setView(document.location.hash)
+
+
+const controller =  {
+  boot: () => {
+    activate(features)
+    render(page())
+  },
+  render: () => render(page(basedon(route())))
 }
-on(window, 'load', setView)
 
-on(window, 'hashchange', setView)
+on(window, 'load', controller.boot)
+
+on(window, 'hashchange', controller.render)

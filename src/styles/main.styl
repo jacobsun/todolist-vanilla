@@ -9,7 +9,6 @@ todo-item =
   margin-left: 70px
   line-height: 2rem
   cursor: text
-  width: 100%
   color: cr_body
 
 button-style =
@@ -76,9 +75,13 @@ input, button
     font-size: 2rem
   ul
     li
+      overflow: hidden
       position: relative
       margin: 0
       border-bottom: 1px solid #eee
+      &:hover
+        .destroy
+          display: block
   footer
     color: cr_click
     font-size: 1.5rem
@@ -97,6 +100,8 @@ input, button
       padding: 5px
       a
         {button-style}
+        padding-top: 0
+        padding-bottom: 0
 
     #clear-done
         position: relative
@@ -128,7 +133,8 @@ label
     transform: scale(.8)
     content: '\2713'
 
-button.delete
+button.destroy
+  display: none
   top: 0
   bottom: 0
   right: 0
@@ -155,6 +161,13 @@ footer.info
           display: none
         input.edit
           {todo-item}
+          border-bottom: 1px solid cr_body
+          width: 100%
+          margin-left:0
+          padding-left:70px
+          box-sizing: border-box
+        .destroy
+          display: none
       &.done
         label
           color: #d9d9d9;
@@ -162,3 +175,23 @@ footer.info
         .toggle:after
           color: cr_decn
 
+@media (max-width: 500px)
+  #content
+    footer
+      line-height: 2rem
+      text-align: left
+      span
+        float: none
+        // padding: 15px
+      .filters
+        position: relative
+        padding-left: 15px
+        a
+          margin: 0
+          padding-right: 15px
+          padding-left: 0
+      #clear-done
+        position: static
+        float: none
+        padding-left: 15px
+        margin: 0

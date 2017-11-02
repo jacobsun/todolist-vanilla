@@ -67,7 +67,9 @@ export default class Store {
   find (query = {}) {
     if (typeof query !== 'object') return -1
     let props = Object.keys(query)
-    if (props.length === 0) return this.items
+    if (props.length === 0){
+      return this.items
+    }
     return this.items.filter(item => {
       return !props.some(prop => {
         return item[prop] !== query[prop]
