@@ -1,4 +1,4 @@
-import {toEntity, qs, delegate, on} from './helpers'
+import {qs, delegate, on} from './helpers'
 import Todo from './todo'
 import {doms, store} from './cache'
 import {render, page} from './view'
@@ -49,7 +49,7 @@ const when = selector => ({
   lastly (cb) {
     this._lastly = cb
     return this
-  },
+  }
 })
 
 export const activate = arr => {
@@ -58,13 +58,13 @@ export const activate = arr => {
       delegate(feature._selector, feature._from, feature._action, (evt) => {
         if (feature._keyCode && feature._keyCode !== evt.keyCode) return
         feature._do(evt)
-        feature._lastly ? feature._lastly(evt) : false
+        if (feature._lastly) feature._lastly(evt)
       }, feature._action === 'blur')
     } else {
       on(feature._selector, feature._action, (evt) => {
         if (feature._keyCode && feature._keyCode !== evt.keyCode) return
         feature._do(evt)
-        feature._lastly ? feature._lastly(evt) : false
+        if (feature._lastly) feature._lastly(evt)
       }, feature._action === 'blur')
     }
   })
@@ -74,7 +74,7 @@ const addItem = when(doms.inputBox)
   .isChanged()
   .do(({target}) => {
     let title = Todo.validator(target.value)
-    if(!title) return
+    if (!title) return
     store.insert(Todo.generator(title))
     target.value = ''
   })
@@ -110,7 +110,7 @@ const toggleAll = when(doms.markAll)
   .isClicked()
   .do(({target}) => {
     let doneStatus = !!target.checked
-    store.update({done: !doneStatus}, {done:doneStatus})
+    store.update({done: !doneStatus}, {done: doneStatus})
   })
   .lastly(({target}) => {
     render(page())
@@ -184,7 +184,4 @@ const clearDone = when(doms.clearDone)
     render(page())
   })
 
-
-
 export const features = [addItem, toggleItem, destroyItem, toggleAll, editItem, editItemDone, editItemCancel, editItemSave, clearDone]
-

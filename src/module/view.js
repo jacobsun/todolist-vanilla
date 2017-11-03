@@ -2,17 +2,16 @@ import {doms, store} from './cache'
 import {toEntity} from './helpers'
 export const route = () => {
   let uri = document.location.hash.replace(/^#\//, '')
-  if (!uri)
-    return 'all'
+  if (!uri) { return 'all' }
   return uri
 }
 
-const _basedon = (store) => (uri) => store.find({all: {}, done:{done: true}, active: {done: false}}[uri])
+const _basedon = (store) => (uri) => store.find({all: {}, done: {done: true}, active: {done: false}}[uri])
 
 export const basedon = _basedon(store)
 
 const updateActiveLeft = (n) => {
-  doms.counts.innerText = `${n} item${n > 1? 's' : ''} left`
+  doms.counts.innerText = `${n} item${n > 1 ? 's' : ''} left`
 }
 
 const updateClearComplete = (haveDone) => {
